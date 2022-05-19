@@ -1,7 +1,7 @@
-# Create Ultra App
+# tRPC + Ultra
 
 ```sh
-git clone https://github.com/exhibitionist-digital/create-ultra-app
+git clone https://github.com/sachinraja/trpc-ultra
 cd create-ultra-app
 deno task install
 deno task dev
