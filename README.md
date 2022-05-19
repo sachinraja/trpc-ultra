@@ -1,8 +1,8 @@
-# tRPC + Ultra
+# [tRPC](https://trpc.io) + [Ultra](https://ultrajs.dev)
 
 ```sh
 git clone https://github.com/sachinraja/trpc-ultra
-cd create-ultra-app
+cd trpc-ultra
 deno task install
 deno task dev
 ```
