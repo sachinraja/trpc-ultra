@@ -1,0 +1,5 @@
+{
+  "watcher": {
+    "match": ["src/server/**/*.*"]
+  }
+}
