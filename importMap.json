@@ -9,7 +9,7 @@
     "ultra/cache": "https://deno.land/x/ultra@v1.0.1/cache.js",
     "@trpc/server": "https://esm.sh/@trpc/server@10.0.0-alpha.22",
     "@trpc/server/": "https://esm.sh/@trpc/server@10.0.0-alpha.22/",
-    "@trpc/client": "https://esm.sh/@trpc/client@10.0.0-alpha.22?deps=@trpc/server@10.0.0-alpha.22",
+    "@trpc/client": "https://esm.sh/@trpc/client@10.0.0-alpha.22",
     "trpc-swr": "https://esm.sh/trpc-swr@0.1.0?alias=swr:https%3A%2F%2Fesm.sh%2Fswr%401.3.0%3Fdeps%3Dreact%4018,@trpc/server:https%3A%2F%2Fesm.sh%2F%40trpc%2Fserver%4010.0.0-alpha.22,@trpc/client:https%3A%2F%2Fesm.sh%2F%40trpc%2Fclient%4010.0.0-alpha.22&deps=react@18",
     "app": "./src/app.tsx"
   }
