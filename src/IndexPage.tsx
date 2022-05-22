@@ -1,8 +1,8 @@
 import React from "react";
-import { trpc, useContext, useMatchMutate } from "./utils/trpc.ts";
+import { trpc, useMatchMutate } from "./utils/trpc.ts";
 
 export const IndexPage = () => {
-  const { client } = useContext();
+  const { client } = trpc.useContext();
 
   const posts = trpc.useSWR(["post.get"], {});
 

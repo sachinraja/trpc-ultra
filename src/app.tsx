@@ -21,7 +21,6 @@ const Ultra = ({ cache }: { cache: Cache }) => {
 
   return (
     <SWRConfig value={options(cache)}>
-      {/* @ts-expect-error version mismatch */}
       <trpc.TRPCProvider client={client}>
         <Helmet>
           <title>Ultra</title>

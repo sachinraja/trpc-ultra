@@ -1,5 +1,5 @@
 import { router } from "@trpc/server";
-import { z } from "https://deno.land/x/zod@v3.16.0/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.16.1/mod.ts";
 
 const posts = [{
   name: "First Post",
