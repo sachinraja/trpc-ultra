@@ -11,7 +11,7 @@ const Posts = () => {
       {posts.data
         ? (
           <ul>
-            {posts.data.map((post) => <li>{post.name}</li>)}
+            {posts.data.map((post) => <li key={post.name}>{post.name}</li>)}
           </ul>
         )
         : <div>Loading...</div>}
