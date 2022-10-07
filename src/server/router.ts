@@ -1,26 +1,27 @@
-import { router } from "@trpc/server";
-import { z } from "https://deno.land/x/zod@v3.16.1/mod.ts";
+import { initTRPC } from "@trpc/server";
+import { z } from "zod";
 
-const posts = [{
-  name: "First Post",
-}];
+const posts = [
+  { name: "First Post" },
+  { name: "Second Post" },
+  { name: "Third Post" },
+];
 
-export const appRouter = router().query("hello", {
-  resolve() {
-    return "world";
-  },
-}).query("post.get", {
-  resolve() {
-    return posts;
-  },
-}).mutation("post.create", {
-  input: z.object({
-    name: z.string(),
-  }),
-  resolve({ input }) {
-    posts.push(input);
-    return input;
-  },
+const t = initTRPC.create();
+
+const postRouter = t.router({
+  get: t.procedure.query(() => posts),
+  create: t.procedure
+    .input(z.object({ name: z.string() }))
+    .mutation(({ input }) => {
+      posts.push(input);
+      return input;
+    }),
+});
+
+export const appRouter = t.router({
+  hello: t.procedure.query(() => "world"),
+  post: postRouter,
 });
 
 export type AppRouter = typeof appRouter;

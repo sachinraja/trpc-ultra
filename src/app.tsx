@@ -1,44 +1,40 @@
-import React, { useState } from "react";
-import { SWRConfig } from "swr";
-import { Helmet } from "react-helmet";
-import { Route, Switch } from "wouter";
-import ultraCache from "ultra/cache";
-import { Cache } from "https://deno.land/x/ultra@v1.0.1/src/types.ts";
-import { trpc } from "./utils/trpc.ts";
-import { createTRPCClient } from "@trpc/client";
-import { IndexPage } from "./IndexPage.tsx";
+// Twind
+import { trpc } from "./trpc/trpc.ts";
+import { TwindProvider } from "./twind/TwindProvider.tsx";
+import { tw } from "twind";
 
-const options = (cache: Cache) => ({
-  provider: () => ultraCache(cache),
-  suspense: true,
-  revalidateOnMount: false,
-});
-
-const Ultra = ({ cache }: { cache: Cache }) => {
-  const [client] = useState(() =>
-    createTRPCClient({ url: "http://localhost:8000/api/trpc" })
-  );
-
+const Posts = () => {
+  const posts = trpc.post.get.useQuery();
   return (
-    <SWRConfig value={options(cache)}>
-      <trpc.TRPCProvider client={client}>
-        <Helmet>
-          <title>Ultra</title>
-        </Helmet>
-
-        <main>
-          <Switch>
-            <Route path="/">
-              <IndexPage />
-            </Route>
-            <Route>
-              <h1>404</h1>
-            </Route>
-          </Switch>
-        </main>
-      </trpc.TRPCProvider>
-    </SWRConfig>
+    <div>
+      <h1 className={tw`text-blue-500`}>Posts</h1>
+      {posts.data
+        ? (
+          <ul>
+            {posts.data.map((post) => <li>{post.name}</li>)}
+          </ul>
+        )
+        : <div>Loading...</div>}
+    </div>
   );
 };
 
-export default Ultra;
+export default function App() {
+  return (
+    <TwindProvider>
+      <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <title>Ultra</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="shortcut icon" href="/favicon.ico" />
+        </head>
+        <body>
+          <main>
+            <Posts />
+          </main>
+        </body>
+      </html>
+    </TwindProvider>
+  );
+}

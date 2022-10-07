@@ -1,10 +1,17 @@
 {
   "tasks": {
-    "install": "deno install -qAf --unstable https://deno.land/x/denon/denon.ts",
-    "dev": "mode=dev denon run -A --location=http://localhost:8000 --unstable --no-check server.ts",
-    "start": "deno run -A --location=http://localhost:8000 --unstable --no-check server.ts",
-    "cache": "deno cache --reload --no-check server.ts",
-    "vendor": "importMap=importMap.json deno run -A --unstable https://deno.land/x/ultra@v1.0.1/vendor.ts"
+    "dev": "deno run -A --no-check --watch ./server.tsx",
+    "test": "deno test --allow-all",
+    "build": "deno run -A ./build.ts",
+    "start": "ULTRA_MODE=production deno run -A --no-remote ./server.js"
   },
-  "importMap": "importMap.json"
+  "compilerOptions": {
+    "jsx": "react-jsxdev",
+    "jsxImportSource": "react",
+    "lib": [
+      "deno.window",
+      "DOM"
+    ]
+  },
+  "importMap": "./importMap.json"
 }
